@@ -2,6 +2,6 @@
 
 ### Activity 1: Arrange data to ease analysis
 
-- [Example spreadsheet](activity1.xlsx)
-- [Example as CSV](activity1.csv)
-- [Tidy version](activity1_tidy.csv)
+- [Example spreadsheet](Activity1.xlsx)
+- [Example as CSV](Activity1.csv)
+- [Tidy version](Activity1_tidy.csv)
