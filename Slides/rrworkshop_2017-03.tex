@@ -1,0 +1,710 @@
+\documentclass[12pt,t]{beamer}
+\usepackage{graphicx}
+\setbeameroption{hide notes}
+\setbeamertemplate{note page}[plain]
+\usepackage{listings}
+
+\input{header.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% end of header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% title info
+\title{Steps toward reproducible research}
+\author{\href{http://kbroman.org}{Karl Broman}}
+\institute{Biostatistics \& Medical Informatics \\ Univ.\ Wisconsin{\textendash}Madison}
+\date{\href{http://kbroman.org}{\tt \scriptsize \color{foreground} kbroman.org}
+\\[-4pt]
+\href{https://github.com/kbroman}{\tt \scriptsize \color{foreground} github.com/kbroman}
+\\[-4pt]
+\href{https://twitter.com/kwbroman}{\tt \scriptsize \color{foreground} @kwbroman}
+\\[2pt]
+\scriptsize {\lolit Slides:} \href{http://bit.ly/asa2016-11}{\tt \scriptsize
+  \color{foreground} bit.ly/asa2016-11}
+}
+
+
+\begin{document}
+
+% title slide
+{
+\setbeamertemplate{footline}{} % no page number here
+\frame{
+  \titlepage
+
+  \vfill \hfill \includegraphics[height=6mm]{Figs/cc-zero.png} \vspace*{-1cm}
+
+  \note{These are slides for a talk I've given a whole bunch of times,
+    most recently at the Joint Statistial Meetings (JSM),
+    Chicago, Illinois, 3 Aug 2016.
+
+    Source: {\tt https://github.com/kbroman/Talk\_ReproRes} \\
+    Slides: {\tt http://bit.ly/asa2016-11\_nonotes} \\
+    With notes: {\tt http://bit.ly/asa2016-11}
+}
+} }
+
+
+\begin{frame}[fragile,c]{}
+
+\begin{center}
+\begin{minipage}[c]{9.3cm}
+\begin{semiverbatim}
+\lstset{basicstyle=\normalsize}
+\begin{lstlisting}[linewidth=9.3cm]
+ Karl -- this is very interesting,
+ however you used an old version of
+ the data (n=143 rather than n=226).
+
+ I'm really sorry you did all that
+ work on the incomplete dataset.
+
+ Bruce
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+\note{This is an edited version of an email I got from a collaborator,
+  in response to an analysis report that I had sent him.
+
+  I try to always include some brief data summaries at the start of
+  such reports. By doing so, he immediately saw that I had an old
+  version of the data.
+
+  Because I'd set things up carefully, I could just substitute in the
+  newer dataset, type ``{\tt make}'', and get the revised report.
+
+  This is a reproducibility success story. But it took me a long
+  time to get to this point.
+}
+\end{frame}
+
+
+\begin{frame}[c]{}
+\centering
+{\Large The results in Table 1 don't seem to \\[12pt]
+correspond to those in Figure 2.}
+
+\note{My computational life is not entirely rosy. This is the sort of
+  email that will freak me out.}
+\end{frame}
+
+
+\begin{frame}[c]{}
+\centerline{\Large In what order do I run these scripts?}
+
+\note{Sometimes the process of data file manipulation and data
+  cleaning gets spread across a bunch of scripts that need to be
+  executed in a particular order. Will I record this information? Is
+  it obvious what script does what?}
+\end{frame}
+
+
+
+\begin{frame}[c]{}
+\centerline{\Large Where did we get this data file?}
+
+\note{Record the provenance of all data or metadata files.}
+\end{frame}
+
+
+
+\begin{frame}[c]{}
+\centerline{\Large Why did I omit those samples?}
+
+\note{I may decide to omit a few samples. Will I record {\nhilit why}
+  I omitted those particular samples?}
+\end{frame}
+
+
+
+\begin{frame}[c]{}
+\centerline{\Large How did I make that figure?}
+
+\note{Sometimes, in the midst of a bout of exploratory data analysis,
+  I'll create some exciting graph and have a heck of a time
+  reproducing it afterwards.}
+\end{frame}
+
+
+
+\begin{frame}[c]{}
+\centerline{\Large ``Your script is now giving an error."}
+
+\note{It was working last week. Well, last month, at least.
+
+How easy is it to go back through that script's history to see where
+and why it stopped working?}
+\end{frame}
+
+
+
+\begin{frame}[c]{}
+\centerline{\Large ``The attached is similar to the code we used."}
+
+\note{From an email in response to my request for code used for a
+  paper.}
+\end{frame}
+
+
+
+
+\begin{frame}[c]{}
+
+
+\centering
+\Large
+
+Reproducible
+
+\bigskip
+
+{\color{lolit} vs.}
+
+\bigskip
+
+\only<1>{Replicable}
+\only<2 | handout 0>{Correct}
+
+\note{Computational work is
+  {\color{nhilit} reproducible} if one can take the data and code and produce
+  the same set of results. {\color{nhilit} Replicable} is more stringent: can
+  someone repeat the experiment and get the same results?
+
+  Reproducibility is a minimal standard. That something is
+  reproducible doesn't imply that it is correct. The code may have bugs. The
+  methods may be poorly behaved. There could be experimental
+  artifacts.
+
+  (But reproducibility is probably associated with correctness.)
+
+  Note that some scientists say replicable for what I call
+  reproducible, and vice versa.
+}
+\end{frame}
+
+
+
+\begin{frame}[c]{Steps toward reproducible research}
+
+  \centering
+  \Large
+
+  \href{http://kbroman.org/steps2rr}{\tt \color{foreground} kbroman.org/steps2rr}
+
+\note{The above website contains my thoughts on how to move towards full
+  reproducibility.
+
+  Don't try to change every aspect of your workflow all at once.
+}
+\end{frame}
+
+
+\begin{frame}[c]{1. Organize your data \& code}
+
+\begin{center}
+\large
+\only<1|handout:0>{
+File organization and naming \\
+are powerful weapons against chaos.
+}
+\only<2>{
+Your closest collaborator is you six months ago, \\
+but you don't reply to emails.
+}
+\end{center}
+
+\hfill
+{\lolit
+\only<1|handout:0>{{\textendash} \href{http://www.stat.ubc.ca/~jenny/}{Jenny Bryan}}
+\only<2>{(paraphrasing \href{https://twitter.com/kcranstn/status/370914072511791104}{Mark Holder})}
+}
+
+\note{The first thing to do is to make your project
+  understandable to others (or yourself, later, when you try to figure
+  out what it was that you did.
+
+  Segregate all the materials for a project in one directory/folder on
+  your harddrive.
+
+  I prefer to separate raw data from processed data, and I put code in
+  a separate directory.
+
+  Write {\tt ReadMe} files to explain what's what.
+}
+\end{frame}
+
+
+\begin{frame}<handout:0>[fragile,c]{1. Organize your data \& code}
+
+\only<1>{\addtocounter{framenumber}{-1}}
+
+\begin{center}
+\begin{minipage}[c]{10.3cm}
+\begin{semiverbatim}
+\lstset{basicstyle=\normalsize}
+\begin{lstlisting}[linewidth=10.3cm]
+RawData/              Notes/
+DerivedData/          Refs/
+
+Python/               ReadMe.txt
+R/                    ToDo.txt
+Ruby/                 Makefile
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}<handout:0>[fragile,c]{Chaos}
+
+\addtocounter{framenumber}{-1}
+
+\begin{center}
+\begin{minipage}[c]{11.33cm}
+\begin{semiverbatim}
+\lstset{basicstyle=\scriptsize}
+\begin{lstlisting}[linewidth=11.33cm]
+AimeeNullSims/    Deuterium/            Ping/
+AimeeResults/     ExtractData4Gary/     Ping2/
+AnnotationFiles/  FromAimee/            Ping3/
+Brian/            GoldStandard/         Ping4/
+Chr6_extrageno/   HumanGWAS/            Play/
+Chr6_segdis/      Insulin/              Prdm9/
+ChrisPlaisier/    Int2_for_Mark/        RBM_PlasmaUrine_2012-03-08/
+Code4Aimee/       Islet_2011-05/        Slco1a6/
+CompAnnot/        MappingProbes/        StudyLineupMethods/
+CondScans/        MultiProbes/          kidney_chr6.R
+D2O_2012-02-14/   NewMap/               pck2_sucla2.R
+D2O_cellcycle/    Notes/                penalties.txt
+D2Ocorr/          NullSims/             transeQTL4Lude/
+Data4Aimee/       NullSims_2009-09-10/
+Data4Tram/        PepIns_2012-02-09/
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[c]{2. Everything with a script}
+
+\centering
+\large
+If you do something once, \\
+you'll do it 1000 times.
+
+\note{The most basic principle for reproducible research is: do
+  everything via code.
+
+  Downloading data from the web, converting an Excel file to CSV,
+  renaming columns/variables, omitting bad samples or data points...do
+  all of this with scripts.
+
+  You may be tempted to open up a data file and hand-edit. But if you
+  get a revised version of that file, you'll need to do it again. And
+  it'll be harder to figure out what it was that you did.
+
+  Some things are more cumbersome via code, but in the long run you'll
+  save time.
+}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile,c]{3. Automate the process (GNU Make)}
+
+\begin{center}
+\begin{minipage}[c]{10.8cm}
+\begin{semiverbatim}
+\begin{lstlisting}[escapechar=!,linewidth=10.8cm]
+!{\color{foreground}{R/analysis.html}}!: !{\color{foreground}{R/analysis.Rmd Data/cleandata.csv}}!
+!{\color{foreground}{    cd R;R -e "rmarkdown::render('analysis.Rmd')"}!
+
+Data/cleandata.csv: R/prepData.R RawData/rawdata.csv
+    cd R;R CMD BATCH prepData.R
+
+RawData/rawdata.csv: Python/xls2csv.py RawData/rawdata.xls
+    Python/xls2csv.py RawData/rawdata.xls > RawData/rawdata.csv
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+\note{GNU Make is an old (and rather quirky) tool for automating the
+  process of building computer programs. But it's useful much more
+  broadly, and I find it valuable for automating the full process of
+  data file manipulation, data cleaning, and analysis.
+
+  In addition to {\nhilit automating} a complex process, it also
+  {\nhilit documents} the process, including the dependencies among
+  data files and scripts.
+}
+\end{frame}
+
+
+
+\begin{frame}<handout:0>[fragile,c]{3. Automate the process (GNU Make)}
+
+\addtocounter{framenumber}{-1}
+
+\begin{center}
+\begin{minipage}[c]{10.8cm}
+\begin{semiverbatim}
+\begin{lstlisting}[escapechar=!,linewidth=10.8cm]
+!{\color{codehilit}{R/analysis.html}}!: !{\color{foreground}{R/analysis.Rmd Data/cleandata.csv}}!
+!{\color{foreground}{    cd R;R -e "rmarkdown::render('analysis.Rmd')"}!
+
+Data/cleandata.csv: R/prepData.R RawData/rawdata.csv
+    cd R;R CMD BATCH prepData.R
+
+RawData/rawdata.csv: Python/xls2csv.py RawData/rawdata.xls
+    Python/xls2csv.py RawData/rawdata.xls > RawData/rawdata.csv
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}<handout:0>[fragile,c]{3. Automate the process (GNU Make)}
+
+\addtocounter{framenumber}{-1}
+
+\begin{center}
+\begin{minipage}[c]{10.8cm}
+\begin{semiverbatim}
+\begin{lstlisting}[escapechar=!,linewidth=10.8cm]
+!{\color{foreground}{R/analysis.html}}!: !{\color{codehilit}{R/analysis.Rmd Data/cleandata.csv}}!
+!{\color{foreground}{    cd R;R -e "rmarkdown::render('analysis.Rmd')"}!
+
+Data/cleandata.csv: R/prepData.R RawData/rawdata.csv
+    cd R;R CMD BATCH prepData.R
+
+RawData/rawdata.csv: Python/xls2csv.py RawData/rawdata.xls
+    Python/xls2csv.py RawData/rawdata.xls > RawData/rawdata.csv
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}<handout:0>[fragile,c]{3. Automate the process (GNU Make)}
+
+\addtocounter{framenumber}{-1}
+
+\begin{center}
+\begin{minipage}[c]{10.8cm}
+\begin{semiverbatim}
+\begin{lstlisting}[escapechar=!,linewidth=10.8cm]
+!{\color{foreground}{R/analysis.html}}!: !{\color{foreground}{R/analysis.Rmd Data/cleandata.csv}}!
+!{\color{codehilit}{    cd R;R -e "rmarkdown::render('analysis.Rmd')"}}!
+
+Data/cleandata.csv: R/prepData.R RawData/rawdata.csv
+    cd R;R CMD BATCH prepData.R
+
+RawData/rawdata.csv: Python/xls2csv.py RawData/rawdata.xls
+    Python/xls2csv.py RawData/rawdata.xls > RawData/rawdata.csv
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+\end{frame}
+
+
+
+
+
+\begin{frame}[c]{4. Turn scripts into reproducible reports}
+
+
+\vspace*{8mm}
+
+\figw{Figs/example_Rmd.png}{0.92}
+\onslide<2>{
+  \vspace*{-0.45\textheight}
+  \hspace*{0.10\textwidth}
+  \figw{Figs/example_Rmd_source.png}{0.92}
+}
+
+\note{I {\nhilit love} R Markdown for making reproducible reports that
+  document the full details of my analysis. R Markdown mixes Markdown
+  (for light-weight markup of text) and R code chunks; when processed
+  with knitr, the R code is executed and results inserted into the
+  final document.
+
+  With these informal reports, I seek to fully capture the entirety of
+  my data explorations and decisions.
+
+  Python people should look at iPython notebooks.
+}
+\end{frame}
+
+
+\begin{frame}[fragile,c]{5. Turn repeated code into functions}
+
+\begin{center}
+\begin{minipage}[c]{10.8cm}
+\begin{semiverbatim}
+\lstset{basicstyle=\large}
+\begin{lstlisting}[linewidth=10.8cm]
+# Python
+def read_genotypes (filename):
+    "Read matrix of genotype data"
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+\vspace*{-8mm}
+
+\begin{center}
+\begin{minipage}[c]{10.8cm}
+\begin{semiverbatim}
+\lstset{basicstyle=\large}
+\begin{lstlisting}[linewidth=10.8cm]
+# R
+plot_genotypes <-
+function(genotypes, ...)
+{
+}
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+\note{Pull out complex or repeated code as a separate function.
+  This makes your code easier to read and maintain.}
+\end{frame}
+
+
+\begin{frame}[c]{6. Create a package/module}
+
+  \centering
+  \Large
+  Don't repeat yourself
+
+  \note{It's surprisingly easy to create an R package (see
+    {\tt http://kbroman.org/pkg\_primer}) and it's even easier to make
+    a Python module.
+
+    When writing functions, try to write them in a somewhat-general
+    way and then pull them out of the project as separate package or
+    module, so that you (and/or others) may reuse them for other purposes.
+}
+\end{frame}
+
+
+\begin{frame}<handout:0>[c]{7. Use version control (git/GitHub)}
+
+\vspace*{3mm}
+
+\centering
+
+% comic from http://www.phdcomics.com/comics/archive.php?comicid=1531
+\only<1>{\figh{Figs/phd101212s.png}{0.8}}
+
+\end{frame}
+
+
+\begin{frame}<handout:0>[fragile,c]{No ``{\hilit final}'' in file names}
+
+
+\addtocounter{framenumber}{-1}
+
+\begin{center}
+\begin{minipage}[c]{9.5cm}
+\begin{semiverbatim}
+\lstset{basicstyle=\tiny}
+\begin{lstlisting}[escapechar=!,linewidth=9.5cm]
+!{\color{foreground}{Deprecated/                            hypo_prcomp.RData}!
+!{\color{foreground}{ReadMe.txt                             islet_int1_final.RData}!
+!{\color{foreground}{adipose_int1_final.RData               islet_int2_final.RData}!
+!{\color{foreground}{adipose_int2_final.RData               islet_mlratio_final.RData}!
+!{\color{foreground}{adipose_mlratio_final.RData            islet_mlratio_nqrank_final.RData}!
+!{\color{foreground}{adipose_mlratio_nqrank_final.RData     islet_prcomp.RData}!
+!{\color{foreground}{adipose_prcomp.RData                   kidney_int1_final.RData}!
+!{\color{foreground}{aligned_geno_with_pmap.RData           kidney_int2_final.RData}!
+!{\color{foreground}{batches_final.RData                    kidney_mlratio_final.RData}!
+!{\color{foreground}{batches_raw_final.RData                kidney_mlratio_nqrank_final.RData}!
+!{\color{foreground}{cpl_final.RData                        kidney_prcomp.RData}!
+!{\color{foreground}{d2o_final.RData                        lipomics_final_rev2.RData}!
+!{\color{foreground}{gastroc_int1_final.RData               liverTG_final.RData}!
+!{\color{foreground}{gastroc_int2_final.RData               liver_int1_final.RData}!
+!{\color{foreground}{gastroc_mlratio_final.RData            liver_int2_final.RData}!
+!{\color{foreground}{gastroc_mlratio_nqrank_final.RData     liver_mlratio_final.RData}!
+!{\color{foreground}{gastroc_prcomp.RData                   liver_mlratio_nqrank_final.RData}!
+!{\color{foreground}{hypo_int1_final.RData                  liver_prcomp.RData}!
+!{\color{foreground}{hypo_int2_final.RData                  mirna_final.RData}!
+!{\color{foreground}{hypo_mlratio_final.RData               necropsy_final_rev2.RData}!
+!{\color{foreground}{hypo_mlratio_final_old.RData           plasmaurine_final_rev.RData}!
+!{\color{foreground}{hypo_mlratio_nqrank_final.RData        pmark.RData}!
+!{\color{foreground}{hypo_mlratio_nqrank_final_old.RData    rbm_final.RData}!
+!{\color{foreground}{hypo_omit.RData}!
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+
+\end{frame}
+
+
+\begin{frame}<handout:0>[fragile,c]{No ``{\hilit final}'' in file names}
+
+
+\addtocounter{framenumber}{-1}
+
+\begin{center}
+\begin{minipage}[c]{9.5cm}
+\begin{semiverbatim}
+\lstset{basicstyle=\tiny}
+\begin{lstlisting}[escapechar=!,linewidth=9.5cm]
+!{\color{foreground}{Deprecated/                            hypo_prcomp.RData}!
+!{\color{foreground}{ReadMe.txt                             islet_int1_final.RData}!
+!{\color{foreground}{adipose_int1_final.RData               islet_int2_final.RData}!
+!{\color{foreground}{adipose_int2_final.RData               islet_mlratio_final.RData}!
+!{\color{foreground}{adipose_mlratio_final.RData            islet_mlratio_nqrank_final.RData}!
+!{\color{foreground}{adipose_mlratio_nqrank_final.RData     islet_prcomp.RData}!
+!{\color{foreground}{adipose_prcomp.RData                   kidney_int1_final.RData}!
+!{\color{foreground}{aligned_geno_with_pmap.RData           kidney_int2_final.RData}!
+!{\color{foreground}{batches_final.RData                    kidney_mlratio_final.RData}!
+!{\color{foreground}{batches_raw_final.RData                kidney_mlratio_nqrank_final.RData}!
+!{\color{foreground}{cpl_final.RData                        kidney_prcomp.RData}!
+!{\color{foreground}{d2o_final.RData                       }!!{\color{vhilit} lipomics_final_rev2.RData}!
+!{\color{foreground}{gastroc_int1_final.RData               liverTG_final.RData}!
+!{\color{foreground}{gastroc_int2_final.RData               liver_int1_final.RData}!
+!{\color{foreground}{gastroc_mlratio_final.RData            liver_int2_final.RData}!
+!{\color{foreground}{gastroc_mlratio_nqrank_final.RData     liver_mlratio_final.RData}!
+!{\color{foreground}{gastroc_prcomp.RData                   liver_mlratio_nqrank_final.RData}!
+!{\color{foreground}{hypo_int1_final.RData                  liver_prcomp.RData}!
+!{\color{foreground}{hypo_int2_final.RData                  mirna_final.RData}!
+!{\color{foreground}{hypo_mlratio_final.RData              }!!{\color{vhilit} necropsy_final_rev2.RData}!
+!{\color{vhilit}{hypo_mlratio_final_old.RData           plasmaurine_final_rev.RData}!
+!{\color{foreground}{hypo_mlratio_nqrank_final.RData        pmark.RData}!
+!{\color{vhilit}{hypo_mlratio_nqrank_final_old.RData   }!!{\color{foreground} rbm_final.RData}!
+!{\color{foreground}{hypo_omit.RData}!
+\end{lstlisting}
+\end{semiverbatim}
+\end{minipage}
+\end{center}
+
+
+\end{frame}
+
+
+
+\begin{frame}[c]{7. Use version control (git/GitHub)}
+
+\only<1>{\addtocounter{framenumber}{-1}}
+
+\vspace*{3mm}
+
+\centering
+
+\figh{Figs/example_commit}{0.80}
+
+\note{
+  git has a steep learning curve, but ultimately I think you'll find
+  it really helpful.
+
+  The big selling point is in collaboration: merging changes from
+  collaborators, and keep your work synchronized.
+
+  Longer term, there's great value in having the entire history of
+  changes to your project. If something stops working, you can go
+  back to any point in that history to see when it stopped working and
+  why.
+
+  With git, you can also work on new features or analyses without fear
+  of breaking the parts that are currently working well.
+}
+\end{frame}
+
+
+
+\begin{frame}{8. License your software}
+
+\vspace{60pt}
+
+\centerline{\large Pick a license, any license}
+
+\vspace{18pt}
+
+\hfill
+{\textendash} \href{http://blog.codinghorror.com/pick-a-license-any-license/}{Jeff Atwood}
+
+\note{
+  If you don't pick a license for your software, no one else can use it.
+
+  So if you want to distribute your code so that others can reproduce
+  your analyses, you need to pick a license, any license.
+
+  I choose between the MIT license and the GPL.
+
+  Don't use the Creative Commons licenses for code. But feel free to
+  use them for other things.
+}
+\end{frame}
+
+
+
+\begin{frame}[c]{}
+
+\begin{center}
+\large
+The most important tool is the {\hilit mindset},\\
+when starting, that the end product \\
+will be reproducible.
+\end{center}
+
+\hfill
+{\lolit
+{\textendash} \href{http://odin.mdacc.tmc.edu/~kabaggerly/}{Keith Baggerly}
+}
+
+\note{So true. Desire for reproducibility is step one.
+}
+\end{frame}
+
+
+
+\begin{frame}[c]{}
+
+\Large
+
+Slides: \href{http://bit.ly/asa2016-11}{\tt bit.ly/asa2016-11} \quad
+\includegraphics[height=5mm]{Figs/cc-zero.png}
+
+\vspace{10mm}
+
+\href{http://kbroman.org}{\tt kbroman.org}
+
+\vspace{10mm}
+
+\href{https://github.com/kbroman}{\tt github.com/kbroman}
+
+\vspace{10mm}
+
+\href{https://twitter.com/kwbroman}{\tt @kwbroman}
+
+
+\note{
+  Here's where you can find me, as well as the slides for this talk.
+}
+\end{frame}
+
+
+
+
+\end{document}
