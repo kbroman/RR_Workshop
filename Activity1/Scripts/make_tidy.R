@@ -5,7 +5,7 @@
 tidy_the_data <-
     function(x)
 {
-    data.frame(strain=c(rep(x[4:5,1], each=ncol(x)-1),
+    result <- data.frame(strain=c(rep(x[4:5,1], each=ncol(x)-1),
                         rep(x[8:9,1], each=ncol(x)-1)),
                genotype=c(rep(x[3,3], (ncol(x)-1)/2),
                           rep(x[3,6], (ncol(x)-1)/2),
@@ -19,6 +19,14 @@ tidy_the_data <-
                                      unlist(x[8,-1]),
                                      unlist(x[9,-1]))),
                stringsAsFactors=FALSE)
+
+    result$date <- sapply(result$date,
+                          function(a) {
+                              a <- strsplit(a, "\\-")[[1]]
+                              a[3] <- paste0("20", a[3])
+                              paste(a[c(3,1,2)], collapse="-")
+                           })
+    result
 }
 
 
