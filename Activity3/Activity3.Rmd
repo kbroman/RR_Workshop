@@ -1,0 +1,42 @@
+---
+title: Example R Markdown document
+author: Karl Broman
+date: 2017-03-23
+output: html_document
+---
+
+This is an example R Markdown document, which allows a mixture of text
+and R code. When processed, the R code is executed and output (for
+example, a graph) is inserted.
+
+I'll first load the "tidy" version of the data from Activity 1. I'll
+download the file using `download.file` and then load it into R using
+`read.csv`.
+
+```{r load_data}
+url <- "http://bit.ly/StPaul-1-tidy"
+file <- "tidy.csv"
+download.file(url, file, method="libcurl")
+dat <- read.csv(file)
+```
+
+The dataset has `r nrow(dat)` rows and `r ncol(dat) columns.
+Here are the first few rows:
+
+```{r head_data}
+head(dat)
+```
+
+Here's a plot:
+
+```{r set_seed, echo=FALSE}
+set.seed(57245016)
+```
+
+```{r plot_data}
+library(ggplot2)
+ggplot(dat, aes(x=genotype, y=response, color=genotype)) +
+    geom_jitter(position=position_jitter(0.08)) +
+    facet_grid(treatment_time ~ strain) +
+    theme(legend.position="none")
+```
