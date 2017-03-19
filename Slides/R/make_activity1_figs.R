@@ -2,11 +2,20 @@
 
 library(broman)
 
-ugly <- read.csv("../Activity1/Activity1.csv",
+# read data
+ugly <- read.table("../Activity1/Activity1.csv", sep=",",
                  header=FALSE, stringsAsFactors=FALSE,
+                 blank.lines.skip=FALSE,
                  colClasses=character())
 
-pdf("Figs/activity1_ugly.pdf", height=5, width=8, pointsize=14)
+# restore two blank lines
+ugly <- rbind(rep("", ncol(ugly)),
+              ugly[1:5,],
+              rep("", ncol(ugly)),
+              ugly[-(1:5),])
+
+
+pdf("Figs/activity1_ugly.pdf", height=6, width=8, pointsize=14)
 excel_fig(ugly, col_names=FALSE)
 dev.off()
 
