@@ -14,7 +14,7 @@ $(STEM)_withnotes.pdf: $(STEM)_withnotes.tex header.tex Figs/activity1_ugly.pdf
 $(STEM)_withnotes.tex: $(STEM).tex Ruby/createVersionWithNotes.rb
 	Ruby/createVersionWithNotes.rb $(STEM).tex $(STEM)_withnotes.tex
 
-Figs/activity1_ugly.pdf: R/make_activity1_figs.R
+Figs/activity1_ugly.pdf: R/make_activity1_figs.R ../Activity1/Activity1.csv ../Activity1/Activity1_tidy.csv
 	Rscript R/make_activity1_figs.R
 
 web: $(STEM).pdf $(STEM)_withnotes.pdf
