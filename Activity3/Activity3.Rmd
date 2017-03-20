@@ -11,7 +11,9 @@ example, a graph) is inserted.
 
 I'll first load the "tidy" version of the data from Activity 1. I'll
 download the file using `download.file` and then load it into R using
-`read.csv`.
+`read.csv`. (I use the `method="libcurl"` business because the URL is
+being redirected. The `file.exists` business ensures that we download
+the file just once.)
 
 ```{r load_data}
 url <- "http://bit.ly/StPaul-1-tidy"
