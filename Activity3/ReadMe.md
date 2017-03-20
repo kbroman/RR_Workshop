@@ -4,7 +4,7 @@
 
 - [Example R Markdown document](Activity3.Rmd)
 - [R Markdown documenation](http://rmarkdown.rstudio.com/)
-- [knitr in a knutshell](http://kbroman.org/knitr_knutshell) tutorial
+- [knitr in a knutshell tutorial](http://kbroman.org/knitr_knutshell)
 
 
 Download the example R Markdown document: <http://bit.ly/StPaul-3>
