@@ -16,7 +16,9 @@ download the file using `download.file` and then load it into R using
 ```{r load_data}
 url <- "http://bit.ly/StPaul-1-tidy"
 file <- "tidy.csv"
-download.file(url, file, method="libcurl")
+if(!file.exists(file)) {
+    download.file(url, file, method="libcurl")
+}
 dat <- read.csv(file)
 ```
 
