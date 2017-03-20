@@ -1,6 +1,6 @@
 ## Workshop on Reproducible Research
 
-### Activity 2: literate programming with R Markdown
+### Activity 3: literate programming with R Markdown
 
 - [Example R Markdown document](Activity3.Rmd)
 - [R Markdown documenation](http://rmarkdown.rstudio.com/)
