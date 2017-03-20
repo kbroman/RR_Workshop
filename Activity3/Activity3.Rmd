@@ -35,8 +35,7 @@ set.seed(57245016)
 
 ```{r plot_data}
 library(ggplot2)
-ggplot(dat, aes(x=genotype, y=response, color=genotype)) +
+ggplot(dat, aes(x=genotype, y=response)) +
     geom_jitter(position=position_jitter(0.08)) +
-    facet_grid(treatment_time ~ strain) +
-    theme(legend.position="none")
+    facet_grid(treatment_time ~ strain)
 ```
