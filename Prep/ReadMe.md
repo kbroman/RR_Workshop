@@ -17,11 +17,11 @@ please re-install them.
 ### Windows
 
 - [R](http://cran.rstudio.com): Download and run
-  <https://cran.rstudio.com/bin/windows/base/R-3.3.3-win.exe>
+  [R-3.3.3-win.exe](https://cran.rstudio.com/bin/windows/base/R-3.3.3-win.exe)
 
 - [RStudio](https://www.rstudio.com/products/rstudio/download/):
   Download and run
-  <https://download1.rstudio.org/RStudio-1.0.136.exe>
+  [RStudio-1.0.136.exe](https://download1.rstudio.org/RStudio-1.0.136.exe)
 
 - Start RStudio, and at the R prompt (the pane with the `>`
   character), type:
@@ -31,11 +31,11 @@ please re-install them.
 ### Mac OS X
 
 - [R](http://cran.rstudio.com): Download and run
-  <https://cran.rstudio.com/bin/macosx/R-3.3.3.pkg>
+  [R-3.3.3.pkg](https://cran.rstudio.com/bin/macosx/R-3.3.3.pkg)
 
 - [RStudio](https://www.rstudio.com/products/rstudio/download/):
   Download and run
-  <https://download1.rstudio.org/RStudio-1.0.136.dmg>
+  [RStudio-1.0.136.dmg](https://download1.rstudio.org/RStudio-1.0.136.dmg)
 
 - Start RStudio, and at the R prompt (the pane with the `>`
   character), type:
