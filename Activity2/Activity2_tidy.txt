@@ -1,0 +1,47 @@
+Here's how I would organize and name them:
+
+RawData/
+    CPL_Rosetta_Lipids_FINAL.xlsx
+    Complete_F2_Liver_TG_Set.xlsx
+    D2O_Summary_of_All_F2_Samples_MF_30July2009.xlsx
+    FINAL_RBM_DATA_102989_26Sep2007.xlsx
+    Final_Fit1_Filtered_Assay_Allele_Signals_and_Genotypes_18Sep.txt
+    Mapped_Urine_Plasma_Data_to_Statgen.xlsx
+    Necropsy_Tracking_Report_rk61412.xlsx
+    Necropsy_Tracking_Report_rk_052912_atb.xlsx
+    Necropsy_Tracking_Report_rk_2011-04-26.xlsx
+    Original_Necropsy_Tracking_Report_rk.xlsx
+    RBM_Tube_Number_Key.xlsx
+
+DerivedData/
+    clinical_pheno.csv
+    detailed_genotypes.csv
+    genotypes4rqtl.csv
+
+    Deprecated/
+        genotypes_karl.csv
+
+R/
+    prep_geno_v1.R
+    prep_geno_func_v1.R
+    combine_pheno_v3.R
+    check_necropsy_v2.R
+    compare_pheno_v1.R
+
+    Deprecated/
+        combine_pheno_v1.R
+        combine_pheno_v2.R
+        check_necropsy_v2.R
+
+Analysis/
+
+    fig1_max_lod_rbm.png
+    fig2_lod_change_liverTG.png
+    fig3_chrmax_cpl.png
+    fig4_chrmax_lipomics.png
+    fig5_chrmax_necropsy.png
+    fig6_chrmax_plasmaurine.png
+    fig7_chrmax_rbm.png
+    fig8_insulin.png
+    scanone_clin_pheno.Rmd
+    scanone_clin_pheno.html

@@ -1,0 +1,57 @@
+Consider the following list of files for a project
+(now with a few annotations).
+
+How would you organize them?
+Would you rename any of them?
+
+
+Raw phenotype data:
+
+    CPL_Rosetta_Lipids_FINAL.xlsx
+    Complete F2 Liver TG Set.xlsx
+    D2O_Summary_of_All_F2_Samples_MF_30July2009.xlsx
+    FINAL_RBM_DATA_102989_26Sep2007.xlsx
+    Mapped_Urine_Plasma_Data_to_Statgen.xlsx
+    Necropsy_Tracking_Report_rk61412.xlsx
+    Necropsy_Tracking_Report_rk_052912_atb.xlsx
+    Necropsy_Tracking_Report_rk_2011-04-26.xlsx
+    Original_Necropsy_Tracking_Report_rk.xlsx
+    RBM_Tube_Number_Key.xlsx
+
+Raw genotype data
+
+    Final Fit1_Filtered_Assay_Allele_Signals_and_Genotypes_18Sep.txt
+
+R scripts to deal with phenotypes:
+
+    check_necropsy_files.R
+    check_necropsy_files_2012-06-02.R
+    combine_pheno.R
+    combine_pheno2.R
+    combine_pheno3.R
+    compareData.R
+
+R scripts to deal with genotypes:
+
+    func.R
+    prepData.R
+
+Converted data:
+
+    clinpheno.csv
+    detailed_genotypes.csv
+    genotypes4rqtl.csv
+    genotypes_karl.csv
+
+Analysis:
+
+    fig1.png
+    fig2.png
+    fig3.png
+    fig4.png
+    fig5.png
+    fig6.png
+    fig7.png
+    fig8.png
+    scanone_clinphe.Rmd
+    scanone_clinphe.html
