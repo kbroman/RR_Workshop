@@ -6,7 +6,7 @@ In [Activity 3](../Activity3), we will be creating an R Markdown
 document, which mixes text and code to make a fully reproducible
 report.
 
-To do so, you will first need to install,
+You will first need to install,
 [R](https://cran.rstudio.com),
 [RStudio](https://www.rstudio.com/products/rstudio/download/), and
 some R packages. It's best to have the *latest* versions, so if you
