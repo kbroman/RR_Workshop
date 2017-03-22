@@ -8,7 +8,7 @@ at the University of Minnesota on 23 March 2017.
 - Preparations (to be developed)
 - [Introductory slides](Slides/)
 - [Activity 1: arrange data to ease analysis](Activity1)
-- Activity 2: organizing and naming files for a project
+- [Activity 2: organizing and naming files for a project](Activity2)
 - [Activity 3: reproducible reports with Rmarkdown](Activity3)
 
 See the related website, [Steps toward reproducible research](http://kbroman.org/steps2rr).
