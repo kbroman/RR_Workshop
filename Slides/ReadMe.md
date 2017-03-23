@@ -19,6 +19,13 @@ times. Here's the most recent version of the full talk:
 
 Also see the related website, [Steps toward reproducible research](http://kbroman.org/steps2rr).
 
+Related tutorials:
+
+- [Organizing data in spreadsheets](http://kbroman.org/dataorg)
+- [Knitr in a knutshell](http://kbroman.org/knitr_knutshell)
+- [R package primer](http://kbroman.org/pkg_primer)
+- [git/GitHub guide](http://kbroman.org/github_tutorial)
+
 ---
 
 To the extent possible under law,
