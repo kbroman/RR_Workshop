@@ -24,7 +24,7 @@ if(!file.exists(file)) {
 dat <- read.csv(file)
 ```
 
-The dataset has `r nrow(dat)` rows and `r ncol(dat) columns.
+The dataset has `r nrow(dat)` rows and `r ncol(dat)` columns.
 Here are the first few rows:
 
 ```{r head_data}
